@@ -19,8 +19,8 @@
 
 我们已经在一起 {{ love_days.DATA }} 天啦
 
-距离a的生日还有：{{ birthday_left.DATA }} 天
+距离ddb的生日还有：{{ birthday_left.DATA }} 天
 
-距离b的生日还有：{{ birthday_left2.DATA }} 天
+距离fk的生日还有：{{ birthday_left2.DATA }} 天
 
 {{ words.DATA }}
