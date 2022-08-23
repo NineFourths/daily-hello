@@ -10,6 +10,7 @@ today = datetime.now()
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
+birthday2 = os.environ['BIRTHDAY2']
 
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
@@ -34,6 +35,12 @@ def get_birthday():
     next = next.replace(year=next.year + 1)
   return (next - today).days
 
+def get_birthday2():
+  next = datetime.strptime(str(date.today().year) + "-" + birthday2, "%Y-%m-%d")
+  if next < datetime.now():
+    next = next.replace(year=next.year + 1)
+  return (next - today).days
+
 def get_words():
   words = requests.get("https://api.shadiao.pro/chp")
   if words.status_code != 200:
@@ -44,6 +51,17 @@ def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
 
+def get_wea_war():
+  tem_wea, tem_a, tem_b, tem_c = get_weather()
+  if str(tem_wea) == "晴":
+    return "天气不错,出去走走⑧"
+  elif str(tem_wea) == "阴":
+    return "天气不错,出去走走⑧"
+  else:
+    return "要是下雨记得带伞"
+
+
+
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
@@ -51,7 +69,19 @@ wea, temperature, highest, lowest = get_weather()
 now_year = today.year
 now_month = today.month
 now_day = today.day
-data = {"date":{"value":now_year, "color":get_random_color()},"weather":{"value":wea,"color":get_random_color()},"temperature":{"value":temperature,"color":get_random_color()},"love_days":{"value":get_count(),"color":get_random_color()},"birthday_left":{"value":get_birthday(),"color":get_random_color()},"words":{"value":get_words(),"color":get_random_color()},"highest": {"value":highest,"color":get_random_color()},"lowest":{"value":lowest, "color":get_random_color()}}
+data = {"weather_warning":{"value": get_wea_war(), "color":get_random_color()},
+        "date_D":{"value":now_day, "color":get_random_color()},
+        "date_M":{"value":now_month, "color":get_random_color()},
+        "date_Y":{"value":now_year, "color":get_random_color()},
+        "weather":{"value":wea,"color":get_random_color()},
+        "temperature":{"value":temperature,"color":get_random_color()},
+        "love_days":{"value":get_count(),"color":get_random_color()},
+        "birthday_left":{"value":get_birthday(),"color":get_random_color()},
+        "birthday_left2":{"value":get_birthday2(),"color":get_random_color()},
+        "words":{"value":get_words(),"color":get_random_color()},
+        "highest": {"value":highest,"color":get_random_color()},
+        "lowest":{"value":lowest, "color":get_random_color()}
+        }
 count = 0
 for user_id in user_ids:
   res = wm.send_template(user_id, template_id, data)
