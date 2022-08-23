@@ -8,18 +8,19 @@
 
 示例模板：
 
-今天是 {{ date.DATA }}
+今天是 {{date_Y.DATA}} 年 {{date_M.DATA}} 月 {{date_D.DATA}} 日
 
 今天天气：{{weather.DATA }}
+{{weather_warning.DATA }}
 
-当前温度：{{ temperature.DATA }}
+当前温度：{{ temperature.DATA }} ℃
 
-低温：{{ lowest.DATA }}
+今日{{city.DATA}}气温：{{ lowest.DATA }} ℃ ~ {{ highest.DATA }} ℃
 
-最高温：{{ highest.DATA }}
+我们已经在一起 {{ love_days.DATA }} 天啦
 
-我们已经相恋 {{ love_days.DATA }} 天啦
+距离a的生日还有：{{ birthday_left.DATA }} 天
 
-距离你的生日还有：{{ birthday_left.DATA }} 天
+距离b的生日还有：{{ birthday_left2.DATA }} 天
 
 {{ words.DATA }}
