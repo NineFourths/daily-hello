@@ -1,4 +1,4 @@
-from datetime import date, datetime
+from datetime import date, datetime ,timedelta
 import math
 from wechatpy import WeChatClient
 from wechatpy.client.api import WeChatMessage, WeChatTemplate
@@ -6,7 +6,7 @@ import requests
 import os
 import random
 
-today = datetime.now()
+today = datetime.now()+timedelta(hours=8)
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
 birthday = os.environ['BIRTHDAY']
@@ -53,7 +53,7 @@ def get_birthday2():
 def get_wea_war():
   tem_wea, tem_a, tem_b, tem_c = get_weather()
   if str(tem_wea) == "晴":
-    return "天气不错,出去走走⑧"
+    return "可能有点晒,记得带把伞"
   elif str(tem_wea) == "阴":
     return "天气不错,出去走走⑧"
   else:
@@ -82,6 +82,7 @@ data = {"weather_warning":{"value": get_wea_war(), "color":get_random_color()},
         "lowest":{"value":lowest, "color":get_random_color()},
         "city":{"value":city, "color":get_random_color()},
         }
+
 count = 0
 for user_id in user_ids:
   res = wm.send_template(user_id, template_id, data)

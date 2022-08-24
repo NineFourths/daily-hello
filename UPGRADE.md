@@ -21,6 +21,6 @@
 
 距离ab的生日还有：{{ birthday_left.DATA }} 天
 
-距离fk的生日还有：{{ birthday_left2.DATA }} 天
+距离方同学的生日还有：{{ birthday_left2.DATA }} 天
 
 {{ words.DATA }}
