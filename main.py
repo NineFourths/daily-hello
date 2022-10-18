@@ -57,7 +57,7 @@ def get_wea_war():
   elif str(tem_wea) == "阴":
     return "天气不错,出去走走⑧"
   else:
-    return "要是下雨记得带伞"
+    return "要是下雨记得带伞捏"
 
 
 
