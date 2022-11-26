@@ -7,11 +7,13 @@ import os
 import random
 
 today = datetime.now()+timedelta(hours=8)
-start_date = os.environ['START_DATE']
+# start_date = os.environ['START_DATE']
+start_date = '2020-07-17'
 city = os.environ['CITY']
-birthday = os.environ['BIRTHDAY']
-birthday2 = os.environ['BIRTHDAY2']
-
+# birthday = os.environ['BIRTHDAY']
+# birthday2 = os.environ['BIRTHDAY2']
+birthday  = '2022-07-17'
+birthday2 = '2022-10-14'
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
@@ -26,14 +28,15 @@ def get_weather():
   return weather['weather'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
 
 def get_count():
-  delta = today - datetime.strptime(start_date, "%Y-%m-%d")
-  return delta.days
+  start_date = datetime.strptime(start_date, '%Y-%m-%d')
+  interval = datetime.now() - start_date
+  return interval.days
 
-def get_birthday():
-  next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
-  if next < datetime.now():
-    next = next.replace(year=next.year + 1)
-  return (next - today).days
+
+def get_birthday(a):
+  a = datetime.strptime(a, '%Y-%m-%d')
+  interval = a - datetime.now()
+  return interval.days
 
 
 def get_words():
@@ -45,11 +48,6 @@ def get_words():
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
-def get_birthday2():
-  next = datetime.strptime(str(date.today().year) + "-" + birthday2, "%Y-%m-%d")
-  if next < datetime.now():
-    next = next.replace(year=next.year + 1)
-  return (next - today).days
 
 def get_wea_war():
   tem_wea, tem_a, tem_b, tem_c = get_weather()
@@ -60,6 +58,19 @@ def get_wea_war():
   else:
     return "要是下雨记得带伞捏"
 
+# 获取星期
+def getWeek():
+    w = datetime.now().strftime('%w')
+    data = {
+        0: '天,要上日语课欸！',
+        1: '一欸',
+        2: '二欸',
+        3: '三欸',
+        4: '四欸，要不要疯狂星期四呀~',
+        5: '五欸',
+        6: '六欸'
+    }
+    return data[int(w)]
 
 
 client = WeChatClient(app_id, app_secret)
@@ -76,12 +87,13 @@ data = {"weather_warning":{"value": get_wea_war(), "color":get_random_color()},
         "weather":{"value":wea,"color":get_random_color()},
         "temperature":{"value":temperature,"color":get_random_color()},
         "love_days":{"value":get_count(),"color":get_random_color()},
-        "birthday_left":{"value":get_birthday(),"color":get_random_color()},
-        "birthday_left2":{"value":get_birthday2(),"color":get_random_color()},
+        "birthday_left":{"value":get_birthday(birthday),"color":get_random_color()},
+        "birthday_left2":{"value":get_birthday(birthday2),"color":get_random_color()},
         "words":{"value":get_words(),"color":get_random_color()},
         "highest": {"value":highest,"color":get_random_color()},
         "lowest":{"value":lowest, "color":get_random_color()},
         "city":{"value":city, "color":get_random_color()},
+        "week":{"value":getWeek(),"color":get_random_color()},
         }
 
 count = 0
