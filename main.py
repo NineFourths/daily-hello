@@ -27,9 +27,9 @@ def get_weather():
   weather = res['data']['list'][0]
   return weather['weather'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
 
-def get_count():
-  start_date = datetime.strptime(start_date, '%Y-%m-%d')
-  interval = datetime.now() - start_date
+def get_count(aa):
+  bb = datetime.strptime(aa, '%Y-%m-%d')
+  interval = datetime.now() - bb
   return interval.days
 
 
@@ -86,7 +86,7 @@ data = {"weather_warning":{"value": get_wea_war(), "color":get_random_color()},
         "date_Y":{"value":now_year, "color":get_random_color()},
         "weather":{"value":wea,"color":get_random_color()},
         "temperature":{"value":temperature,"color":get_random_color()},
-        "love_days":{"value":get_count(),"color":get_random_color()},
+        "love_days":{"value":get_count(start_date),"color":get_random_color()},
         "birthday_left":{"value":get_birthday(birthday),"color":get_random_color()},
         "birthday_left2":{"value":get_birthday(birthday2),"color":get_random_color()},
         "words":{"value":get_words(),"color":get_random_color()},
