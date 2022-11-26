@@ -12,8 +12,8 @@ start_date = '2020-07-17'
 city = os.environ['CITY']
 # birthday = os.environ['BIRTHDAY']
 # birthday2 = os.environ['BIRTHDAY2']
-birthday  = '2022-07-17'
-birthday2 = '2022-10-14'
+birthday  = '2023-08-05'
+birthday2 = '2023-10-14'
 app_id = os.environ["APP_ID"]
 app_secret = os.environ["APP_SECRET"]
 
@@ -29,7 +29,7 @@ def get_weather():
 
 def get_count(aa):
   bb = datetime.strptime(aa, '%Y-%m-%d')
-  interval = datetime.now() - bb
+  interval = datetime.now() - bb + 1
   return interval.days
 
 
@@ -54,7 +54,7 @@ def get_wea_war():
   if str(tem_wea) == "晴":
     return "可能有点晒,记得带把伞"
   elif str(tem_wea) == "阴":
-    return "天气不错,出去走走⑧"
+    return "天气不错,出去走走叭"
   else:
     return "要是下雨记得带伞捏"
 
@@ -62,13 +62,13 @@ def get_wea_war():
 def getWeek():
     w = datetime.now().strftime('%w')
     data = {
-        0: '天,要上日语课欸！',
-        1: '一欸',
-        2: '二欸',
-        3: '三欸',
-        4: '四欸，要不要疯狂星期四呀~',
-        5: '五欸',
-        6: '六欸'
+        0: '星期天,要上日语课欸！',
+        1: '星期一欸',
+        2: '星期二欸',
+        3: '星期三欸',
+        4: '星期四欸，要不要疯狂星期四呀~',
+        5: '星期五欸',
+        6: '星期六欸'
     }
     return data[int(w)]
 
