@@ -8,7 +8,7 @@ import random
 
 today = datetime.now()+timedelta(hours=8)
 # start_date = os.environ['START_DATE']
-start_date = '2020-07-17'
+start_date = '2020-07-16'#减1天
 city = os.environ['CITY']
 # birthday = os.environ['BIRTHDAY']
 # birthday2 = os.environ['BIRTHDAY2']
@@ -29,7 +29,7 @@ def get_weather():
 
 def get_count(aa):
   bb = datetime.strptime(aa, '%Y-%m-%d')
-  interval = datetime.now() - bb + 1
+  interval = datetime.now() - bb
   return interval.days
 
 
