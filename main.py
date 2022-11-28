@@ -70,7 +70,7 @@ def getWeek():
         5: '星期五欸',
         6: '星期六欸'
     }
-    return data[int(w)]
+    return data[(int(w)+1)%7]
 
 
 client = WeChatClient(app_id, app_secret)
