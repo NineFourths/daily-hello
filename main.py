@@ -33,6 +33,8 @@ def get_birthday():
   next = datetime.strptime(str(date.today().year) + "-" + birthday, "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
+    if ( (next - today).days == -1 ):
+        return "就是今天!!!"
   return (next - today).days
 
 def get_words():
@@ -47,7 +49,9 @@ def get_random_color():
 def get_birthday2():
   next = datetime.strptime(str(date.today().year) + "-" + birthday2, "%Y-%m-%d")
   if next < datetime.now():
-    next = next.replace(year=next.year + 1)
+      next = next.replace(year=next.year + 1)
+      if ((next - today).days == -1):
+          return "就是今天!!!"
   return (next - today).days
 
 def get_wea_war():
