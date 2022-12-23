@@ -9,6 +9,7 @@ import random
 today = datetime.now()+timedelta(hours=8)
 start_date = os.environ['START_DATE']
 city = os.environ['CITY']
+city = "信宜"
 birthday = os.environ['BIRTHDAY']
 birthday2 = os.environ['BIRTHDAY2']
 
