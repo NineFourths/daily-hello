@@ -27,10 +27,10 @@ def get_weather():
 
   url = "https://devapi.qweather.com/v7/weather/now?lang=cn&gzip=n&location=cn101280102&key=300db3a6b17447f7bbf92aca06a6aee3"
   res = requests.get(url).json()
-  textDay = res['now']['textDay']
+  text = res['now']['text']
   temp = res['now']['temp']
 
-  return textDay, math.floor(temp), math.floor(tempMax), math.floor(tempMin)
+  return text, math.floor(temp), math.floor(tempMax), math.floor(tempMin)
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
