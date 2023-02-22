@@ -30,7 +30,7 @@ def get_weather():
   text = res['now']['text']
   temp = res['now']['temp']
 
-  return text, math.floor(temp), math.floor(tempMax), math.floor(tempMin)
+  return text, int(temp), int(tempMax), int(tempMin)
 
 def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
