@@ -22,11 +22,10 @@ template_id = os.environ["TEMPLATE_ID"]
 
 
 def get_weather():
-  url = "http://autodev.openspeech.cn/csp/api/v2.1/weather?openId=aiuicus&clientType=android&sign=android&city=" + city
+  url = "https://v0.yiketianqi.com/api?unescape=1&version=v91&appid=43656176&appsecret=I42og6Lm&ext=&cityid=&city=" + city
   res = requests.get(url).json()
-  weather = res['data']['list'][0]
-  return weather['weather'], math.floor(weather['temp']), math.floor(weather['high']), math.floor(weather['low'])
-
+  weather = res['data'][0]
+  return weather['wea'], math.floor(weather['tem']), math.floor(weather['tem1']), math.floor(weather['tem2']),weather['wea_img']
 def get_count(aa):
   bb = datetime.strptime(aa, '%Y-%m-%d')
   interval = datetime.now() - bb
@@ -50,11 +49,13 @@ def get_random_color():
 
 
 def get_wea_war():
-  tem_wea, tem_a, tem_b, tem_c = get_weather()
-  if str(tem_wea) == "晴":
+  tem_wea, tem_a, tem_b, tem_c,debug2  = get_weather()
+  if str(debug2) == "晴":
     return "可能有点晒,记得带把伞"
-  elif str(tem_wea) == "阴":
+  elif str(debug2) == "阴":
     return "天气不错,出去走走叭"
+  elif str(debug2) == "yu":
+    return "下雨欸，一定得带伞！！"
   else:
     return "要是下雨记得带伞捏"
 
@@ -63,11 +64,11 @@ def getWeek():
     w = datetime.now().strftime('%w')
     data = {
         0: '星期天,要上日语课欸！',
-        1: '星期一欸',
-        2: '星期二欸',
+        1: '星期一欸，上班第一天？',
+        2: '星期二欸，肥最讨厌滴',
         3: '星期三欸',
         4: '星期四欸，要不要疯狂星期四呀~',
-        5: '星期五欸',
+        5: '星期五欸，放假啦！！！',
         6: '星期六欸'
     }
     return data[(int(w)+1)%7]
@@ -76,7 +77,7 @@ def getWeek():
 client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
-wea, temperature, highest, lowest = get_weather()
+wea, temperature, highest, lowest ,debug1 = get_weather()
 now_year = today.year
 now_month = today.month
 now_day = today.day
