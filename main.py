@@ -47,15 +47,15 @@ def get_birthday():
   return (next - today).days
 
 def get_words():
-  # words = requests.get("https://api.shadiao.pro/chp")
-  # if words.status_code != 200:
-  #   return get_words()
-  # return words.json()['data']['text']
+  words = requests.get("https://api.shadiao.pro/chp")
+  if words.status_code != 200:
+    return get_words()
+  return words.json()['data']['text']
 
-  url = "https://devapi.qweather.com/v7/weather/now?lang=cn&gzip=n&location=cn101280102&key=300db3a6b17447f7bbf92aca06a6aee3"
-  res = requests.get(url).json()
-  text = res['now']['text']
-  return text
+  # url = "https://devapi.qweather.com/v7/weather/now?lang=cn&gzip=n&location=cn101280102&key=300db3a6b17447f7bbf92aca06a6aee3"
+  # res = requests.get(url).json()
+  # text = res['now']['text']
+  # return text
 
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
