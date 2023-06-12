@@ -102,7 +102,8 @@ now_year = today.year
 now_month = today.month
 now_day = today.day
 slice_love_words()
-data = {"weather_warning":{"value": get_wea_war(), "color":get_random_color()},
+data = {
+        # "weather_warning":{"value": get_wea_war(), "color":get_random_color()},
         "date_D":{"value":now_day, "color":get_random_color()},
         "date_M":{"value":now_month, "color":get_random_color()},
         "date_Y":{"value":now_year, "color":get_random_color()},
