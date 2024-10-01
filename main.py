@@ -22,12 +22,12 @@ r1 = []
 
 
 def get_weather():
-  url = "https://devapi.qweather.com/v7/weather/3d?lang=cn&gzip=n&location=101280102&key=300db3a6b17447f7bbf92aca06a6aee3"
+  url = "https://devapi.qweather.com/v7/weather/3d?lang=cn&gzip=n&location=101010700&key=300db3a6b17447f7bbf92aca06a6aee3"
   res = requests.get(url).json()
   tempMax = res['daily'][0]['tempMax']
   tempMin = res['daily'][0]['tempMin']
 
-  url = "https://devapi.qweather.com/v7/weather/now?lang=cn&gzip=n&location=cn101280102&key=300db3a6b17447f7bbf92aca06a6aee3"
+  url = "https://devapi.qweather.com/v7/weather/now?lang=cn&gzip=n&location=cn101010700&key=300db3a6b17447f7bbf92aca06a6aee3"
   res = requests.get(url).json()
   text = res['now']['text']
   temp = res['now']['temp']
